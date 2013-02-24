@@ -172,6 +172,7 @@ html
           li Indentation, <code class=push>nest :: Int -> Doc -> Doc</code>
           li Print doc, <code class=push>layout :: Doc -> String</code>
       #text-layout-law.step
+        h3 Law of <code>text</code> &amp; <code>layout</code>
         pre: code.haskell.
           text (s ++ t) == text s &lt;> text t
           text "" == nil
@@ -183,7 +184,6 @@ html
       #nest.step.small(data-y=6000, data-x=0)
         h3 nest
         .container
-          output.code.post
           .code.pre
             .row
               .text Lorem
@@ -211,6 +211,7 @@ html
               .line
             .row
               .text , consecteur
+          output.code.post
           pre: code.haskell-code
           :coffeescript
             $root = $('#nest .container')
@@ -227,7 +228,6 @@ html
       #nest-2.step.small
         h3 nest (Cont.)
         .container
-          output.code.post
           .code.pre
             .row
               .text Lorem
@@ -255,6 +255,7 @@ html
             .row
               .line
               .text , consecteur
+          output.code.post
           pre: code.haskell-code
           :coffeescript
             $root = $('#nest-2 .container')
@@ -325,32 +326,30 @@ html
           li: code flatten :: Doc -> Doc
           li: code (&lt;|>) :: Doc -> Doc -> Doc
       #flatten.step
-        h3 flatten
+        h3: code flatten :: Doc -> Doc
         ul
-          li: code flatten :: Doc -> Doc
           li &forall; layout in the set
           li: <code>/\n */ &rarr; " "</code>
           li Replace newline (and associated indent) with a single space
       #alternative.step
-        h3= '<|>'
+        h3: code (&lt;|>) :: Doc -> Doc -> Doc
         ul
-          li: code (&lt;|>) :: Doc -> Doc -> Doc
-          li: Union of two sets of layouts
-          li: <code>/\n */ &rarr; " "</code>
-          li: Replace newline (and associated indent) with a single space
+          li Union of two sets of layouts
+          li: code /\n */ &rarr; " "
+          li Replace newline (and associated indent) with a single space
           li
             | Prerequisite:
             pre: code.
               &forall; <em>u</em>, <em>v</em> &isin; x
               flatten <em>u</em> == flatten <em>v</em>
       #alternative-law.step
-        h3 Law of &lt;|>
+        h3 Law of <code>&lt;|></code>
         pre: code.haskell
           | (x &lt;|> y) &lt;> z == (x &lt;> z) &lt;|> (y &lt;> z)
           | x &lt;> (y &lt;|> z) == (x &lt;> y) &lt;|> (x &lt;> z)
           | nest (i (x &lt;|> y)) == (nest i x) &lt;|> (nest i y)
         p Can be reduced to a normal form:
-        p
+        pre: code
           | <em>x</em><sub>0</sub> &lt;|> <em>x</em><sub>1</sub> &lt;|> &hellip; &lt;|> <em>x</em><sub>n-1</sub>
       #exponential-growth.step
         h3 Exponential Growth
@@ -375,6 +374,7 @@ html
             &forall; <em>v</em> &isin; y
             the first line of <em>u</em> is not shorter than the first line of <em>v</em>
       #flatten-law.step
+        h3 Law of <code>flatten</code>
         pre: code.haskell.
           flatten nil == nil
           flatten line == text " "
@@ -447,7 +447,7 @@ html
           $v.attr 'data-y', $u.attr('data-y')
 
       # substep
-      $('li, p, pre').attr 'data-jmpress', 'fade'
+      $('li, p, pre, .code').attr 'data-jmpress', 'fade'
       $('li:has(img)').css 'list-style-type', 'none'
       $('#jmpress').jmpress()
 

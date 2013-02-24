@@ -35,12 +35,13 @@ pre
 
   code
     display block
-    background #1d1f21
-    color #c5c8c6
 
 code
   padding .3em
   border-radius .5em
+  font-weight normal
+  background #1d1f21
+  color #c5c8c6
 
 p
   margin .6em 0
@@ -58,6 +59,7 @@ p
   transition         opacity 1s
   //opacity 0.2
   opacity 0
+  font-weight bold
 
 .step.small
   font-size 48px
@@ -87,12 +89,8 @@ img
 .will-fade
   opacity 0
 
-.do-fade.has-fade
-  color peachpuff
-
 .do-fade
   opacity 1
-  color lightgreen
 
 .center
   text-align center
@@ -146,7 +144,9 @@ code, .code
   position relative
 
 .code.post
-  float right
+  position absolute
+  top 0
+  right 0
 
 /*
 .haskell-code
@@ -155,3 +155,13 @@ code, .code
 */
 
 // Step
+
+#thanks
+  display -moz-box
+  display -webkit-box
+  display box
+  -webkit-box-align center
+  -moz-box-align center
+  box-align center
+  h2
+    width 100%
