@@ -1,0 +1,157 @@
+@import 'nib'
+
+@font-face
+  font-family 'RamblaBold'
+  src url('../fonts/Rambla-Bold.ttf') format('truetype')
+
+body
+  font-family 'RamblaBold', sans
+  background-color #131514
+  color white
+  min-height 740px
+
+#title p
+  text-align center
+
+h2, h3
+  font-size 66px
+  text-align center
+  text-shadow 0 0 3px hsla(255, 255, 255, 0.5)
+
+h2
+  color hsl(286, 58, 54%)
+
+h3
+  color hsl(286, 58, 74%)
+
+h1
+  font-size 96px
+  text-align center
+  color silver
+  text-shadow 0px 0px 7px hsla(0,255,192,0.6)
+
+pre
+  margin .3em auto
+
+  code
+    display block
+    background #1d1f21
+    color #c5c8c6
+
+code
+  padding .3em
+  border-radius .5em
+
+p
+  margin .6em 0
+
+.step
+  width 1020px
+  height 800px
+  padding 40px 60px
+  color peachpuff
+  font-size 60px
+  -webkit-transition opacity 1s
+  -moz-transition    opacity 1s
+  -ms-transition     opacity 1s
+  -o-transition      opacity 1s
+  transition         opacity 1s
+  //opacity 0.2
+  opacity 0
+
+.step.small
+  font-size 48px
+
+.active
+  opacity 1
+
+#acknowledge
+  background-color #893260
+  font-weight bolder
+  border-radius 1em 0.4em 1em 0.4em
+  padding 0.2em auto
+  text-align center
+
+ul
+  margin .6em 0
+  list-style-type disc
+  &.list-none
+    list-style-type none
+
+img
+  float right
+
+.big
+  font-size 48px
+
+.will-fade
+  opacity 0
+
+.do-fade.has-fade
+  color peachpuff
+
+.do-fade
+  opacity 1
+  color lightgreen
+
+.center
+  text-align center
+
+pre
+  white-space pre-wrap
+  word-wrap break-word
+
+
+// .code
+
+.push
+  margin-left 1em
+
+code, .code
+  font-family 'DejaVu Sans Mono', monospace
+  font-size 44px
+
+.row
+  position relative
+  //overflow-y hidden
+  //overflow-x visible
+  height 1em
+
+.text, .line, .indent, .indent::before
+  display inline-block
+  height 100%
+  vertical-align top
+
+.text
+  background darkblue
+
+.line
+  background gray
+
+.indent::before
+  height 1em
+  content '\00A0'
+  background lightgreen
+
+.bar
+  position absolute
+  top 0
+  left 0
+  bottom 0
+  width 5px
+  background red
+  margin-left -@width
+
+.container
+  position relative
+
+.code.post
+  float right
+
+/*
+.haskell-code
+  text-indent -30px
+  margin 50px 0 0 -1*@text-indent
+*/
+
+// Step

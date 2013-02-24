@@ -1,0 +1,19 @@
+{
+  "name": "APrettyPrinterLibraryInHaskell",
+  "version": "0.0.1",
+  "author": {
+    "name": "SONG Fangrui"
+  },
+  "scripts": {
+    "dev": "grunt dev"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "0.4.x",
+    "grunt-contrib-coffee": "0.4.x",
+    "grunt-contrib-stylus": "0.4.x",
+    "grunt-contrib-jade": "0.4.x",
+    "grunt-contrib-watch": "0.2.x",
+    "grunt-contrib-clean": "0.4.x"
+  }
+}

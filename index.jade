@@ -1,0 +1,471 @@
+doctype 5
+html
+  head
+    meta(charset='utf-8')
+    meta(name='author', content='SONG Fangrui')
+    - var title = 'A Pretty Printer Library in Haskell'
+    link(rel='stylesheet', href='css/style.css')
+    link(rel='stylesheet', href='css/tomorrow-night.css')
+    script(src='js/jquery-1.8.3.min.js')
+  body
+    #jmpress
+      #title.step(data-x=0)
+        h1= title
+        p 宋方睿
+        p i#maskray,me
+      #what-is-pretty-printer.step
+        h2 What is a pretty printer
+        p Use positioning, spacing, color, size, etc.
+        p To make the content easier to view
+      #ruby-pp.step(data-scale=.8)
+        h3 Ruby Example
+        pre: code.ruby
+          | require 'pp'
+          | PP.pp 10.times.to_a, $>, 29
+          | PP.pp 10.times.to_a, $>, 30
+          | p 10.times.to_a.size
+      #indent.step
+        h3 indent
+        ul
+          li http://indent.isidore-it.eu/beautify.html
+        pre: code.bash
+          = 'indent <<e\n'
+          = 'int foo(int k){if(k<1||k>2){printf("out of range\\n")\n'
+          = 'printf("this function requires a value of 1 or 2\\n");}else{\n'
+          = 'printf("Switching\\n");switch(k){case 1:printf("1\\n");break;case\n'
+          = '2:printf("2\\n");break;}}}\n'
+          | e
+      #par.step
+        h3 par
+        ul
+          li par - filter for reformatting paragraphs
+          li http://www.nicemice.net/par/
+      #topic.step(data-y=1500, data-scale=1.3)
+        h2 Topic
+        ul
+          li Introducton to Haskell
+          li Domain-specific Language
+          li Text formatting
+        pre: code.haskell
+          = 'text "<html>" <> nest 2 (text "<body>" <> line <> text "</body>") <> "</html>"'
+      #haskell.step(data-x=2500)
+        h2 Haskell
+        p Function application (juxtaposition)
+        pre: code.haskell
+          | min 19 58
+        pre: code.c
+          | min(19, 58)
+        pre: code.haskell
+          | succ 0 + min 555 350
+        pre: code.c
+          | succ(0) + min(555, 350)
+      #haskell-list.step(data-x=1000)
+        pre: code.haskell
+          | [Int]
+        p Singly-linked list
+        pre: code.cpp
+          | std::slist&lt;int&gt;
+      #haskell-list-2.step(data-x=-500)
+        pre: code.haskell
+          | [2,0,1,3] ++ [0,2]
+        pre: code.python
+          | [2,0,1,3] + [0,2]
+        p Result:
+        pre: code.haskell
+          | [2,0,1,3,0,2]
+      #haskell-string.step(data-x=-500)
+        h3 String Is List
+        pre: code.haskell.
+          type String = [Char]
+        pre: code.haskell
+          | ['r','a','y']
+        p Result:
+        pre: code.haskell
+          | "ray"
+      #take.step(data-y=3000)
+        pre: code.haskell
+          | take 5 [1,9,1,1,0,4,2,6]
+        pre: code.python
+          | [1,9,1,1,0,4,2,6][:5]
+        p Result:
+        pre: code.haskell
+          | [1,9,1,1,0]
+      #drop.step
+        pre: code.haskell
+          | drop 5 [1,9,1,1,0,4,2,6]
+        pre: code.python
+          | [1,9,1,1,0,4,2,6][5:]
+        p Result:
+        pre: code.haskell
+          | [4,2,6]
+      #takewhile.step
+        pre: code.haskell
+          | takeWhile odd [1,9,1,1,0,4,2,6]
+        pre: code.python
+          | from itertools import takewhile
+          | odd = def x: bool(x % 2)
+          | takewhile(odd, [1,9,1,1,0,4,2,6])
+        p Result:
+        pre: code.haskell
+          | [1,9,1,1]
+      #type-signature.step
+        p Type signature
+        pre: code.haskell
+          | add :: Int -> Float -> Double
+        pre: code.c
+          | double add(int, float);
+      #function.step
+        p Function
+        pre: code.haskell
+          | suc :: Int -> Int
+          | suc 0 = 1
+          | suc 1 = 2
+        pre: code.c
+          | int suc(int x) {
+          |   if (x == 0) return 1;
+          |   if (x == 1) return 2;
+          |   abort();
+          | }
+      .step
+        pre: code.haskell
+          | add :: Int -> Int -> Int
+          | add 2 0 = 2
+          | add 1 3 = 4
+        pre: code.c
+          | int add(int x, int y) {
+          |   if (x == 2 && y == 0) return 2;
+          |   if (x == 1 && y == 3) return 4;
+          |   abort();
+          | }
+      .step
+        p Algebraid data type / tagged union / variant
+        pre: code.c
+          | enum T { Y, L, L0, S, W, Q };
+        pre: code.haskell
+          | data T = Y | L | L0 | S | W | Q
+      .step(data-y=4500, data-x=0)
+        p: <em>Tagged</em> union
+        pre: code.haskell
+          | data J = X Float | Q Char Char
+          | X 2.5
+          | Q 'z' 'y'
+        pre: code.c
+          | struct J {int tag; union {float M; struct{char C0, C1;} Q;};};
+          | struct J P; P.tag = 0; P.M = 2.5f;
+          | struct J R; P.tag = 1; R.Q.C0 = 'z'; R.Q.C1 = 'y';
+      #rose-tree.step
+        p Rose Tree
+        pre: code.cpp
+          | struct RoseTree {
+          |   int key;
+          |   RoseTree *sub_trees;
+          | };
+        pre: code.haskell
+          | data RoseTree = RoseTree Int [RoseTree]
+      #operators.step
+        h3 Operators
+        ul
+          li Concatenation, <code class=push>(&lt;&gt;) :: Doc -> Doc -> Doc</code>
+          li Empty doc, <code class=push>nil :: Doc</code>
+          li String literal, <code class=push>text :: String -> Doc</code>
+          li Newline, <code class=push>line :: Doc</code>
+          li Indentation, <code class=push>nest :: Int -> Doc -> Doc</code>
+          li Print doc, <code class=push>layout :: Doc -> String</code>
+      #text-layout-law.step
+        pre: code.haskell.
+          text (s ++ t) == text s &lt;> text t
+          text "" == nil
+        pre: code.haskell.
+          layout nil == ""
+          layout line == "\n"
+          layout (text x) == x
+          layout (x &lt;> y) == layout x ++ layout y
+      #nest.step.small(data-y=6000, data-x=0)
+        h3 nest
+        .container
+          output.code.post
+          .code.pre
+            .row
+              .text Lorem
+              .line
+            .row
+              .indent
+              .text ipsum
+              .line
+            .row
+              .bar
+              .indent
+              .indent
+              .indent
+              .text dolor
+              .line
+            .row
+              .bar
+              .text sit
+              .line
+            .row
+              .bar
+              .indent
+              .indent
+              .text amet
+              .line
+            .row
+              .text , consecteur
+          pre: code.haskell-code
+          :coffeescript
+            $root = $('#nest .container')
+            $$ = (x) -> $(x, $root)
+            leaves = $$('.row div:not(:has(*))').map (_, e) ->
+              cls = $(e).prop('class')
+              if cls == 'text'
+                cls = "#{cls} \"#{$(e).text()}\""
+              cls
+            $$('.haskell-code').html leaves.toArray().join ' <> '
+
+            $('.code.post').html $$('.code.pre').html()
+            $('.code.post .bar').after $('<div class=indent>')
+      #nest-2.step.small
+        h3 nest (Cont.)
+        .container
+          output.code.post
+          .code.pre
+            .row
+              .text Lorem
+            .row
+              .line
+              .indent
+              .text ipsum
+            .row
+              .bar
+              .line
+              .indent
+              .indent
+              .indent
+              .text dolor
+            .row
+              .bar
+              .line
+              .text sit
+            .row
+              .bar
+              .line
+              .indent
+              .indent
+              .text amet
+            .row
+              .line
+              .text , consecteur
+          pre: code.haskell-code
+          :coffeescript
+            $root = $('#nest-2 .container')
+            $$ = (x) -> $(x, $root)
+            leaves = $$('.row div:not(:has(*))').map (_, e) ->
+              cls = $(e).prop('class')
+              if cls == 'text'
+                cls = "#{cls} \"#{$(e).text()}\""
+              cls
+            $$('.haskell-code').html leaves.toArray().join ' <> '
+
+            $('.code.post').html $$('.code.pre').html()
+            $('.code.post .bar + .line').after $('<div class=indent>')
+      #nest-law.step
+        h3 nest (Cont.)
+        pre: code.haskell
+          | nest i nil == nil
+          | nest 0 x == x
+          | nest (i+j) x == nest i (nest j x)
+          | nest i (text x) == text x
+          | nest i (x &lt;> y) == nest i x &lt;> nest i y
+          | &nbsp;
+          | layout (nest i line) == '\n' : replicate i ' '
+      #adt.step(data-y=7500, data-x=0)
+        h3 ADT
+        pre: code.haskell
+          | data Doc = Nil
+          |          | Text String Doc
+          |          | Line Int Doc
+        pre: code.haskell.
+          Text "Lorem" (Line 1 (Text "ipsum (Line 3 &hellip;)))
+        pre: code.haskell.
+          text "Lorem" &lt;> line &lt;> indent &lt;> text "ipsum" &lt;> line &lt;> indent &lt;> indent &lt;> indent &lt;> &hellip;
+      #semantics.step
+        pre: code.haskell.
+          nil = Nil
+          text x = Text x Nil
+          line = Line 0 Nil
+          &nbsp;
+          Nil &lt;> x = x
+          (Text x y) &lt;> z = x &lt;> (Text y &lt;> z)
+          (Line i x) &lt;> y = Line i (x &lt;> y)
+          &nbsp;
+          nest i Nil = Nil
+          nest i (Text x y) = x &lt;> nest i y
+          nest i (Line j x) = Line (i+j) (nest i x)
+      #semantics-2.step
+        pre: code.haskell
+          | layout Nil = ""
+          | layout (Text x y) = x ++ layout y
+          | layout (Line x y) = '\n' : replicate i ' ' ++ layout y
+      .step
+        h3 Example
+        pre: code.haskell
+          = 'data Tree = Node String [Tree]\n'
+          = 'tree (Node s ts) = text s <> (bracket ts)\n'
+          = '\n'
+          = 'bracket [] = nil\n'
+          = 'bracket ts = text "[" <> nest 2 (line <> trees ts) <> line <> text "]"\n'
+          = '\n'
+          = 'trees [t] = tree t\n'
+          = 'trees (t:ts) = tree t <> text "," <> line <> trees ts\n'
+      #alternative-layouts.step(data-y=4000)
+        h3 Alternative Layouts
+        ul
+          li: Before we view Doc as equivalent to String
+          li: View it as a set of strings now
+          li: code flatten :: Doc -> Doc
+          li: code (&lt;|>) :: Doc -> Doc -> Doc
+      #flatten.step
+        h3 flatten
+        ul
+          li: code flatten :: Doc -> Doc
+          li &forall; layout in the set
+          li: <code>/\n */ &rarr; " "</code>
+          li Replace newline (and associated indent) with a single space
+      #alternative.step
+        h3= '<|>'
+        ul
+          li: code (&lt;|>) :: Doc -> Doc -> Doc
+          li: Union of two sets of layouts
+          li: <code>/\n */ &rarr; " "</code>
+          li: Replace newline (and associated indent) with a single space
+          li
+            | Prerequisite:
+            pre: code.
+              &forall; <em>u</em>, <em>v</em> &isin; x
+              flatten <em>u</em> == flatten <em>v</em>
+      #alternative-law.step
+        h3 Law of &lt;|>
+        pre: code.haskell
+          | (x &lt;|> y) &lt;> z == (x &lt;> z) &lt;|> (y &lt;> z)
+          | x &lt;> (y &lt;|> z) == (x &lt;> y) &lt;|> (x &lt;> z)
+          | nest (i (x &lt;|> y)) == (nest i x) &lt;|> (nest i y)
+        p Can be reduced to a normal form:
+        p
+          | <em>x</em><sub>0</sub> &lt;|> <em>x</em><sub>1</sub> &lt;|> &hellip; &lt;|> <em>x</em><sub>n-1</sub>
+      #exponential-growth.step
+        h3 Exponential Growth
+        pre: code.haskell
+          | (x0 &lt;|> x1) &lt;> (x2 &lt;|> x3) &lt;> (x4 &lt;|> x5) &lt;> &hellip;
+      #adt-with-union.step
+        h3 ADT with union
+        pre: code.haskell.
+          data Doc = Nil
+                   | Text String Doc
+                   | Line Int Doc
+                   | Union Doc Doc
+        pre: code.haskell.
+          x &lt;|> y = Union x y
+      #invariants.step
+        h3 Invariants
+        p For <code>Union x y</code>, we require that:
+        ul
+          li: code flatten x == flatten y
+          li: pre: code.
+            &forall; <em>u</em> &isin; x
+            &forall; <em>v</em> &isin; y
+            the first line of <em>u</em> is not shorter than the first line of <em>v</em>
+      #flatten-law.step
+        pre: code.haskell.
+          flatten nil == nil
+          flatten line == text " "
+          flatten (test x) == x
+          flatten (x &lt;> y) = flatten x &lt;> flatten y
+          flatten (nest i x) == flatten x
+          flatten (x &lt;|> y) == flatten x
+      #best-layout.step
+        h3 Best Layout
+        ul
+          li Available width <em>w</em>
+          li Given two <code>Doc</code>
+          li We need to specify the prettier one
+          li Alphabetical order
+      #prettier-line.step
+        h3 Prettier Line
+        ul
+          li If both are shorter than <em>w</em>, the longer is preferred
+          li If both are longer than <em>w</em>, the shorter is preferred
+          li One is longer than <em>w</em> and the other is not, the shorter is preferred
+      #best.step
+        h3: code best :: Doc -> Doc
+        ul
+          li Take a <code>Doc</code> that may contains unions
+          li Return a <code>Doc</code> containing no unions
+          li Sort all layouts
+          li Layouts with the prettiest first line
+          li Sort those layouts
+          li Layouts with the prettiest second line
+          li Sort those layouts
+          li Layouts with the prettiest third line
+          li &vellip;
+      #best-imp.step
+        pre: code.haskell.
+          best w k Nil = Nil
+          best w k (Line i x) = Line i (best w i x)
+          best w k (Text x y) = Text x (best w (k + length x) y)
+          best w k (Union x y) = if fits (w-k) xx yy
+            where
+              xx = best w k x
+              yy = best w k y
+        pre: code.haskell.
+          fit w x | w &lt; 0 = False
+          fit w Nil = True
+          fit w (Text x y) = fit (w - length x) y
+          fit w (Line i x) = True
+      #final.step
+        h3: code.
+          pretty w x = layout (best w 0 x)
+      #thanks.step
+        h2 Thanks
+      #references.step
+        h2 References
+        ul
+          li: cite A Prettier Printer, Philip Wadler
+    script(src='js/jmpress.js')
+    script(src='js/highlight.pack.js')
+    :coffeescript
+      # content
+      $('.line').html '&crarr;'
+
+      # step
+      $steps = $('.step')
+      for i in [1...$steps.length] by 1
+        $u = $steps.eq(i-1)
+        $v = $steps.eq(i)
+        unless $v.attr('data-x')?
+          $v.attr 'data-x', +$u.attr('data-x') + (if $v.attr('data-y')? then 0 else 1300)
+        unless $v.attr('data-y')?
+          $v.attr 'data-y', $u.attr('data-y')
+
+      # substep
+      $('li, p, pre').attr 'data-jmpress', 'fade'
+      $('li:has(img)').css 'list-style-type', 'none'
+      $('#jmpress').jmpress()
+
+      # duration bar
+      duration_bar = $('<div/>').css('background-color': 'cyan', width: '0', height: '5px', left: 0, bottom: 0, position: 'fixed').appendTo $('body')
+      start = Date.now()
+      full = 10*60*1000
+      #full = 10*1000
+      setInterval ->
+        duration = Date.now()-start
+        w = $(window).width()
+        colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
+        i = Math.floor duration/full
+        if i < 7
+          duration_bar.css 'background-color': colors[i], width: duration%full/full*w
+        else
+          duration_bar.css 'background-color': 'white', width: w
+      , 2000
+
+      # highlight
+      $('pre > code').each (_, e) -> hljs.highlightBlock(e)
