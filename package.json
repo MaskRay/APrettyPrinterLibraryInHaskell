@@ -5,7 +5,7 @@
     "name": "SONG Fangrui"
   },
   "scripts": {
-    "dev": "grunt dev"
+    "start": "grunt dev"
   },
   "dependencies": {},
   "devDependencies": {

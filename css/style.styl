@@ -1,5 +1,28 @@
 @import 'nib'
 
+// Slide
+
+.step
+  font-weight bold
+  font-size 64px
+  width 1020px
+  height 720px
+  padding 40px 60px
+  color peachpuff
+  transition opacity 1s
+  opacity 0
+
+.active
+  opacity 1
+
+.will-fade
+  opacity 0
+
+.do-fade
+  opacity 1
+
+// Typography
+
 @font-face
   font-family 'RamblaBold'
   src url('../fonts/Rambla-Bold.ttf') format('truetype')
@@ -8,111 +31,62 @@ body
   font-family 'RamblaBold', sans
   background-color #131514
   color white
-  min-height 740px
 
-#title p
+p, ul, h2, h3, pre
+  margin .1em auto
+
+h1
+  font-size 100px
   text-align center
+  color silver
+  text-shadow 0 0 30px hsla(0,255,192,0.6)
 
 h2, h3
-  font-size 66px
+  font-size 68px
   text-align center
-  text-shadow 0 0 3px hsla(255, 255, 255, 0.5)
+  text-shadow 0 0 3px darken(white, 50%)
 
 h2
-  color hsl(286, 58, 54%)
+  color hsl(286, 58, 64%)
 
 h3
   color hsl(286, 58, 74%)
 
-h1
-  font-size 96px
-  text-align center
-  color silver
-  text-shadow 0px 0px 7px hsla(0,255,192,0.6)
+a
+  color lightblue
 
-pre
-  margin .3em auto
+.small
+  font-size 56px
+  code, .code
+    font-size 48px
 
-  code
-    display block
-
-code
-  padding .3em
-  border-radius .5em
-  font-weight normal
-  background #1d1f21
-  color #c5c8c6
-
-p
-  margin .6em 0
-
-.step
-  width 1020px
-  height 800px
-  padding 40px 60px
-  color peachpuff
-  font-size 60px
-  -webkit-transition opacity 1s
-  -moz-transition    opacity 1s
-  -ms-transition     opacity 1s
-  -o-transition      opacity 1s
-  transition         opacity 1s
-  //opacity 0.2
-  opacity 0
-  font-weight bold
-
-.step.small
-  font-size 48px
-
-.active
-  opacity 1
-
-#acknowledge
-  background-color #893260
-  font-weight bolder
-  border-radius 1em 0.4em 1em 0.4em
-  padding 0.2em auto
-  text-align center
-
-ul
-  margin .6em 0
-  list-style-type disc
-  &.list-none
-    list-style-type none
-
-img
-  float right
-
-.big
-  font-size 48px
-
-.will-fade
-  opacity 0
-
-.do-fade
-  opacity 1
-
-.center
-  text-align center
+.smaller
+  font-size 50px
+  code, .code
+    font-size 44px
 
 pre
   white-space pre-wrap
   word-wrap break-word
+  margin .1em auto
+  code
+    display block
 
-
-// .code
-
-.push
-  margin-left 1em
+code
+  padding .2em
+  border-radius .4em
+  font-weight normal
+  background #1d1f21
+  color #c5c8c6
 
 code, .code
   font-family 'DejaVu Sans Mono', monospace
-  font-size 44px
+  font-size 54px
+
+// #nest
 
 .row
-  position relative
-  //overflow-y hidden
-  //overflow-x visible
+  position relative // for .bar
   height 1em
 
 .text, .line, .indent, .indent::before
@@ -136,7 +110,7 @@ code, .code
   top 0
   left 0
   bottom 0
-  width 5px
+  width 10px
   background red
   margin-left -@width
 
@@ -148,20 +122,12 @@ code, .code
   top 0
   right 0
 
-/*
-.haskell-code
-  text-indent -30px
-  margin 50px 0 0 -1*@text-indent
-*/
+// Content
 
-// Step
+#title p
+  text-align center
 
 #thanks
-  display -moz-box
-  display -webkit-box
-  display box
-  -webkit-box-align center
-  -moz-box-align center
-  box-align center
-  h2
-    width 100%
+  display -webkit-flex
+  -webkit-align-items center
+  -webkit-justify-items center
