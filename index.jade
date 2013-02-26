@@ -19,11 +19,11 @@ html
         p To make the content easier to view
       #ruby-pp.step(data-scale=.8)
         h3 Ruby Example
-        pre: code.ruby
-          | require 'pp'
-          | PP.pp 10.times.to_a, $>, 29
-          | PP.pp 10.times.to_a, $>, 30
-          | p 10.times.to_a.size
+        pre: code.ruby.
+          require 'pp'
+          PP.pp 10.times.to_a, $&gt;, 29
+          PP.pp 10.times.to_a, $&gt;, 30
+          p 10.times.to_a.size
       #indent.step
         h3 indent
         pre: code.bash.
@@ -57,29 +57,29 @@ html
           succ 0 + min 555 350
         pre: code.c.
           succ(0) + min(555, 350)
-      #haskell-list.step(data-x=1000)
+      #list.step(data-x=1000)
         h3 List
         pre: code.haskell.
           [Int]
         p Singly-linked list
         pre: code.cpp.
           std::slist&lt;int&gt;
-      #haskell-list-2.step(data-x=-500)
+      #list-2.step(data-x=-500)
         pre: code.haskell.
           [2,0,1,3] ++ [0,2]
         pre: code.python.
           [2,0,1,3] + [0,2]
         p Result:
-        pre: code.haskell.
+        pre: samp.
           [2,0,1,3,0,2]
-      #haskell-string.step(data-x=500)
+      #string.step(data-x=500)
         h3 String is List
         pre: code.haskell.
           type String = [Char]
         pre: code.haskell.
           ['r','a','y']
         p Result:
-        pre: code.haskell.
+        pre: samp.
           "ray"
       #take.step(data-y=3000)
         h3 List Manipulation
@@ -88,7 +88,7 @@ html
         pre: code.python.
           [1,9,1,1,0,4,2,6][:5]
         p Result:
-        pre: code.haskell.
+        pre: samp.
           [1,9,1,1,0]
       #drop.step
         pre: code.haskell.
@@ -96,7 +96,7 @@ html
         pre: code.python.
           [1,9,1,1,0,4,2,6][5:]
         p Result:
-        pre: code.haskell.
+        pre: samp.
           [4,2,6]
       #takewhile.step
         pre: code.haskell.
@@ -106,7 +106,7 @@ html
           odd = lambda x: bool(x % 2)
           takewhile(odd, [1,9,1,1,0,4,2,6])
         p Result:
-        pre: code.haskell.
+        pre: samp.
           [1,9,1,1]
       #type-signature.step
         h3 Type Signature
@@ -271,14 +271,14 @@ html
             $$('.code.post .bar + .line').after $$('<div class=indent>')
       #nest-law.step.small
         h3 nest (Cont.)
-        pre: code.haskell
-          | nest i nil == nil
-          | nest 0 x == x
-          | nest (i+j) x == nest i (nest j x)
-          | nest i (text x) == text x
-          | nest i (x &lt;> y) == nest i x &lt;> nest i y
-          | &nbsp;
-          | layout (nest i line) == '\n' : replicate i ' '
+        pre: code.haskell.
+          nest i nil == nil
+          nest 0 x == x
+          nest (i+j) x == nest i (nest j x)
+          nest i (text x) == text x
+          nest i (x &lt;&gt; y) == nest i x &lt;&gt; nest i y
+          &nbsp;
+          layout (nest i line) == '\n' : replicate i ' '
       #adt.step(data-y=7500, data-x=0)
         h3 A Simple ADT
         pre: code.haskell.
@@ -288,7 +288,7 @@ html
         pre: code.haskell.
           Text "Lorem" (Line 1 (Text "ipsum (Line 3 &hellip;)))
         pre: code.haskell.
-          text "Lorem" &lt;> line &lt;> indent &lt;> text "ipsum" &lt;> line &lt;> indent &lt;> indent &lt;> indent &lt;> &hellip;
+          text "Lorem" &lt;&gt; line &lt;&gt; indent &lt;&gt; text "ipsum" &lt;&gt; line &lt;&gt; indent &lt;&gt; indent &lt;&gt; indent &lt;&gt; &hellip;
       #semantics.step.smaller
         h3 Semantics
         pre: code.haskell.
@@ -296,9 +296,9 @@ html
           text x = Text x Nil
           line = Line 0 Nil
 
-          Nil &lt;> x = x
-          (Text x y) &lt;> z = Text x (y &lt;> z)
-          (Line i x) &lt;> y = Line i (x &lt;> y)
+          Nil &lt;&gt; x = x
+          (Text x y) &lt;&gt; z = Text x (y &lt;&gt; z)
+          (Line i x) &lt;&gt; y = Line i (x &lt;&gt; y)
 
           nest i Nil = Nil
           nest i (Text x y) = Text x (nest i y)
@@ -340,21 +340,21 @@ html
           li
             | Prerequisite:
             pre: code.
-              &forall; <em>u</em>, <em>v</em> &isin; x
-              flatten <em>u</em> == flatten <em>v</em>
+              &forall; <var>u</var>, <var>v</var> &isin; x
+              flatten <var>u</var> == flatten <var>v</var>
       #alternative-law.step
         h3 Law of <code>&lt;|></code>
-        pre: code.haskell
-          | (x &lt;|> y) &lt;> z == (x &lt;> z) &lt;|> (y &lt;> z)
-          | x &lt;> (y &lt;|> z) == (x &lt;> y) &lt;|> (x &lt;> z)
-          | nest i (x &lt;|> y) == (nest i x) &lt;|> (nest i y)
+        pre: code.haskell.
+          (x &lt;|>gt; y) &lt;>gt; z == (x &lt;>gt; z) &lt;|>gt; (y &lt;>gt; z)
+          x &lt;>gt; (y &lt;|>gt; z) == (x &lt;>gt; y) &lt;|>gt; (x &lt;>gt; z)
+          nest i (x &lt;|>gt; y) == (nest i x) &lt;|>gt; (nest i y)
         p Reduced to a normal form:
-        pre: code
-          | <em>x</em><sub>0</sub> &lt;|> <em>x</em><sub>1</sub> &lt;|> &hellip; &lt;|> <em>x</em><sub>n-1</sub>
+        pre: code.
+          <var>x</var><sub>0</sub> &lt;|> <var>x</var><sub>1</sub> &lt;|> &hellip; &lt;|> <var>x</var><sub>n-1</sub>
       #exponential-growth.step
         h3 Exponential Growth
-        pre: code.haskell
-          | (x0 &lt;|> x1) &lt;> (x2 &lt;|> x3) &lt;> (x4 &lt;|> x5) &lt;> &hellip;
+        pre: code.haskell.
+          (x0 &lt;|> x1) &lt;> (x2 &lt;|> x3) &lt;> (x4 &lt;|> x5) &lt;> &hellip;
       #adt-with-union.step
         h3 ADT with union
         pre: code.haskell.
@@ -370,9 +370,9 @@ html
         ul
           li: code flatten x == flatten y
           li: pre: code.
-            &forall; <em>u</em> &isin; x
-            &forall; <em>v</em> &isin; y
-            the first line of <em>u</em> is not shorter than the first line of <em>v</em>
+            &forall; <var>u</var> &isin; <var>x</var>
+            &forall; <var>v</var> &isin; <var>y</var>
+            the first line of <var>u</var> is not shorter than the first line of <var>v</var>
       #flatten-law.step
         h3 Law of <code>flatten</code>
         pre: code.haskell.
@@ -385,16 +385,16 @@ html
       #best-layout.step
         h3 Best Layout
         ul
-          li Available width <em>w</em>
+          li Available width <var>w</var>
           li Given two <code>Doc</code>
           li We need to specify the prettier one
           li Alphabetical order
       #prettier-line.step
         h3 Prettier Line
         ul
-          li Both are shorter than <em>w</em> &rarr; Prefer the longer
-          li Both are longer than <em>w</em> &rarr; Prefer the shorter
-          li One is longer than <em>w</em> and the other is not &rarr; Prefer the shorter
+          li Both are shorter than <var>w</var> &rarr; Prefer the longer
+          li Both are longer than <var>w</var> &rarr; Prefer the shorter
+          li One is longer than <var>w</var> and the other is not &rarr; Prefer the shorter
       #best.step.small
         h3: code best :: Doc -> Doc
         ul
